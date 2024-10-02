@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import axios from "axios";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const onClickUsers = () => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/users")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
+  const onClickUsers = async () => {
+    try {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const onClickUser1 = () => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users?id=1")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <button onClick={onClickUsers}>users</button>
+      <button onClick={onClickUser1}>id=1のuser</button>
+    </div>
+  );
 }
 
-export default App
+export default App;
