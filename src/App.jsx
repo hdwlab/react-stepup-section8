@@ -5,15 +5,24 @@ import "./App.css";
 import axios from "axios";
 
 function App() {
-  const onClickUsers = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  // const onClickUsers = () => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/users")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const onClickUsers = async () => {
+    try {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onClickUser1 = () => {
     axios
